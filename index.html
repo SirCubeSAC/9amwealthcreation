@@ -67,10 +67,10 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white transition-colors duration-300 overflow-x-hidden">
 
     <!-- Section 1: Navigation Bar -->
-    <header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 sticky top-0 z-50 transition-colors duration-300">
+    <header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 sticky top-0 z-40 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
             <a href="#" class="flex flex-col tracking-tight group">
                 <span class="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white group-hover:text-primary transition-colors duration-200">
@@ -79,30 +79,60 @@
             </a>
             
             <div class="flex items-center gap-6 sm:gap-8">
-                <!-- Theme Switcher Switch -->
-                <button id="themeToggle" 
-                        class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-200 text-slate-600 dark:text-slate-400 text-lg"
-                        title="Toggle Display Theme" aria-label="Toggle interface theme">
-                    <i id="themeToggleIcon" class="fas fa-moon"></i>
-                </button>
-
-                <div class="h-6 w-px bg-slate-200 dark:bg-slate-800"></div>
-
-                <nav class="flex items-center gap-6" aria-label="Social Media Links">
+                <nav class="flex items-center gap-6 sm:gap-7" aria-label="Social Navigation Menu">
                     <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" 
-                       class="text-slate-400 hover:text-red-600 dark:hover:text-red-500 text-3xl transition-all duration-200 hover:scale-110" 
+                       class="text-slate-400 hover:text-red-600 dark:hover:text-red-500 text-2xl sm:text-3xl transition-all duration-200 hover:scale-110" 
                        aria-label="Visit 9AM Wealth Creation on YouTube">
                         <i class="fab fa-youtube" aria-hidden="true"></i>
                     </a>
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
-                       class="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 text-3xl transition-all duration-200 hover:scale-110" 
+                       class="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 text-2xl sm:text-3xl transition-all duration-200 hover:scale-110" 
                        aria-label="Connect with 9AM Wealth Creation on Facebook">
                         <i class="fab fa-facebook-f" aria-hidden="true"></i>
                     </a>
+                    
+                    <div class="h-6 w-px bg-slate-200 dark:bg-slate-800"></div>
+                    
+                    <!-- Sidebar Open Button (...) -->
+                    <button id="sidebarToggle" 
+                            class="text-slate-400 hover:text-primary p-1 text-xl sm:text-2xl transition-all duration-200 hover:scale-110 flex items-center justify-center outline-none"
+                            title="Open Settings Sidebar" aria-label="Open settings and theme options layout drawer">
+                        <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
+                    </button>
                 </nav>
             </div>
         </div>
     </header>
+
+    <!-- Standard Settings Sidebar -->
+    <!-- Dim Backdrop Layer -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    
+    <!-- Drawer Container Panel -->
+    <aside id="sidebarDrawer" class="fixed top-0 right-0 h-full w-80 max-w-[calc(100vw-2rem)] bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 z-50 translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col p-6">
+        <!-- Sidebar Title Section -->
+        <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-200 dark:border-slate-800">
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">Settings</h2>
+            <button id="sidebarClose" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-lg transition-colors duration-150 p-1" aria-label="Close Sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Sidebar Navigation Content -->
+        <div class="space-y-6 flex-grow">
+            <div class="space-y-2">
+                <label class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Theme Mode</label>
+                <button id="themeToggle" 
+                        class="w-full flex items-center justify-between gap-3 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 p-3 rounded-xl transition-all duration-200 outline-none font-medium text-sm shadow-sm">
+                    <span class="flex items-center gap-2.5">
+                        <i id="themeToggleIcon" class="fas fa-moon text-slate-400 dark:text-indigo-400"></i>
+                        Interface Style
+                    </span>
+                    <span id="themeLabel" class="text-xs font-bold text-slate-400 dark:text-slate-500 font-mono tracking-tight uppercase">Light</span>
+                </button>
+            </div>
+        </div>
+    </aside>
 
     <!-- Section 2: Main Hero Layout Frame -->
     <main class="flex-grow flex items-center bg-white dark:bg-slate-950 relative overflow-hidden transition-colors duration-300">
@@ -166,32 +196,61 @@
         </div>
     </footer>
 
-    <!-- Scripts Matrix Module for Theme Handling & Canvas Simulation Graph -->
+    <!-- Scripts Module -->
     <script>
+        // --- Sidebar Logic Handler ---
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarClose = document.getElementById('sidebarClose');
+        const sidebarDrawer = document.getElementById('sidebarDrawer');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function toggleDrawerState(open = true) {
+            if (open) {
+                sidebarDrawer.classList.remove('translate-x-full');
+                sidebarOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                sidebarDrawer.classList.add('translate-x-full');
+                sidebarOverlay.classList.add('opacity-0', 'pointer-events-none');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        sidebarToggle.addEventListener('click', () => toggleDrawerState(true));
+        sidebarClose.addEventListener('click', () => toggleDrawerState(false));
+        sidebarOverlay.addEventListener('click', () => toggleDrawerState(false));
+
+        // --- Core Application Theme Configurations ---
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeToggleIcon = document.getElementById('themeToggleIcon');
+        const themeLabel = document.getElementById('themeLabel');
         
+        function updateThemeInterfaceElements() {
+            const isDark = document.documentElement.classList.contains('dark');
+            themeToggleIcon.className = isDark ? 'fas fa-sun text-amber-500' : 'fas fa-moon text-slate-400';
+            themeLabel.innerText = isDark ? 'Dark' : 'Light';
+        }
+
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
-            themeToggleIcon.className = 'fas fa-sun';
         } else {
             document.documentElement.classList.remove('dark');
-            themeToggleIcon.className = 'fas fa-moon';
         }
+        updateThemeInterfaceElements();
 
         themeToggleBtn.addEventListener('click', () => {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
-                themeToggleIcon.className = 'fas fa-moon';
                 localStorage.setItem('theme', 'light');
             } else {
                 document.documentElement.classList.add('dark');
-                themeToggleIcon.className = 'fas fa-sun';
                 localStorage.setItem('theme', 'dark');
             }
+            updateThemeInterfaceElements();
             renderMatrixView();
         });
 
+        // --- Real-time Financial Ticker Simulation ---
         const canvas = document.getElementById('tickerCanvas');
         const ctx = canvas.getContext('2d');
         const priceText = document.getElementById('priceDisplay');

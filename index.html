@@ -13,7 +13,6 @@
     <!-- Tailwind CSS Core -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Injecting the custom CSS variables into Tailwind's theme utility framework
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -71,31 +70,32 @@
 
     <!-- Section 1: Navigation Bar -->
     <header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 sticky top-0 z-40 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+        <!-- FIXED: Removed max-w structural limits, replaced with full view expansion layout mechanics -->
+        <div class="w-full px-6 sm:px-12 h-24 flex items-center justify-between">
             <a href="#" class="flex flex-col tracking-tight group">
                 <span class="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white group-hover:text-primary transition-colors duration-200">
                     9AM WEALTH <span class="text-secondary">CREATION</span>
                 </span>
             </a>
             
-            <div class="flex items-center gap-6 sm:gap-8">
-                <nav class="flex items-center gap-6 sm:gap-7" aria-label="Social Navigation Menu">
+            <div class="flex items-center">
+                <nav class="flex items-center gap-4 sm:gap-5" aria-label="Social Navigation Menu">
                     <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" 
-                       class="text-slate-400 hover:text-red-600 dark:hover:text-red-500 text-2xl sm:text-3xl transition-all duration-200 hover:scale-110" 
+                       class="w-10 h-10 flex items-center justify-center rounded-xl text-slate-400 hover:text-red-600 dark:hover:text-red-500 text-xl sm:text-2xl transition-all duration-200 hover:scale-110" 
                        aria-label="Visit 9AM Wealth Creation on YouTube">
                         <i class="fab fa-youtube" aria-hidden="true"></i>
                     </a>
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
-                       class="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 text-2xl sm:text-3xl transition-all duration-200 hover:scale-110" 
+                       class="w-10 h-10 flex items-center justify-center rounded-xl text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 text-xl sm:text-2xl transition-all duration-200 hover:scale-110" 
                        aria-label="Connect with 9AM Wealth Creation on Facebook">
                         <i class="fab fa-facebook-f" aria-hidden="true"></i>
                     </a>
                     
-                    <div class="h-6 w-px bg-slate-200 dark:bg-slate-800"></div>
+                    <div class="h-5 w-px bg-slate-200 dark:bg-slate-700 mx-1"></div>
                     
                     <!-- Sidebar Open Button (...) -->
                     <button id="sidebarToggle" 
-                            class="text-slate-400 hover:text-primary p-1 text-xl sm:text-2xl transition-all duration-200 hover:scale-110 flex items-center justify-center outline-none"
+                            class="w-10 h-10 flex items-center justify-center rounded-xl text-slate-400 hover:text-primary text-xl sm:text-2xl transition-all duration-200 hover:scale-110 outline-none"
                             title="Open Settings Sidebar" aria-label="Open settings and theme options layout drawer">
                         <i class="fas fa-ellipsis-h" aria-hidden="true"></i>
                     </button>
@@ -105,12 +105,9 @@
     </header>
 
     <!-- Standard Settings Sidebar -->
-    <!-- Dim Backdrop Layer -->
     <div id="sidebarOverlay" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
     
-    <!-- Drawer Container Panel -->
     <aside id="sidebarDrawer" class="fixed top-0 right-0 h-full w-80 max-w-[calc(100vw-2rem)] bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 z-50 translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col p-6">
-        <!-- Sidebar Title Section -->
         <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-200 dark:border-slate-800">
             <h2 class="text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">Settings</h2>
             <button id="sidebarClose" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-lg transition-colors duration-150 p-1" aria-label="Close Sidebar">
@@ -118,7 +115,6 @@
             </button>
         </div>
 
-        <!-- Sidebar Navigation Content -->
         <div class="space-y-6 flex-grow">
             <div class="space-y-2">
                 <label class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Theme Mode</label>
@@ -153,7 +149,6 @@
                     At 9AM Wealth Creation, we bridge the gap between financial theory and active market execution. We focus strictly on building analytical frameworks and deep technical understanding so you can confidently command your portfolio's performance.
                 </p>
 
-                <!-- Action Interface Dynamic Selector Trigger -->
                 <div class="pt-4">
                     <a href="#register" 
                        class="group inline-flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover active:bg-primary-active text-white font-bold text-lg px-10 py-4 rounded-xl shadow-xl transition-all duration-200 transform active:scale-[0.98] outline-none focus:ring-4 focus:ring-primary-focus">

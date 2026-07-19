@@ -3,52 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Optimized SEO Title Tag -->
     <title>9AM Wealth Creation | Financial Education & Analytical Frameworks</title>
     
-    <!-- Meta SEO Architecture -->
     <meta name="description" content="At 9AM Wealth Creation, we bridge the gap between financial theory and market execution with deep technical understanding and investment analysis frameworks.">
     <meta name="keywords" content="9AM Wealth Creation, financial theory, market execution, investment strategy, technical analysis, portfolio management">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://9amwealthcreation.com/">
 
-    <!-- Tailwind CSS (Stable Production Delivery + Dark Mode Config Support) -->
+    <!-- Tailwind CSS Core -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        // Injecting the custom CSS variables into Tailwind's theme utility framework
         tailwind.config = {
             darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: 'var(--color-primary)',
+                            hover: 'var(--color-primary-hover)',
+                            active: 'var(--color-primary-active)',
+                            focus: 'var(--color-primary-focus)',
+                        },
+                        secondary: {
+                            DEFAULT: 'var(--color-secondary)',
+                        }
+                    }
+                }
+            }
         }
     </script>
     
-    <!-- FontAwesome Core Icon Assets -->
+    <!-- Icons & Typography -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Premium Geometric Tech Font Set -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
+        /* ==========================================
+           COLOR CONFIGURATION MATRIX (CHANGE COLORS HERE)
+           ========================================== */
+        :root {
+            /* Light Mode Theme Parameters */
+            --color-primary: #4f46e5;         /* Dynamic Indigo-600 */
+            --color-primary-hover: #4338ca;   /* Indigo-700 */
+            --color-primary-active: #3730a3;  /* Indigo-800 */
+            --color-primary-focus: #e0e7ff;   /* Indigo-100 */
+            
+            --color-secondary: #4f46e5;       /* Target Branding Secondary Color */
+        }
+
+        .dark {
+            /* Dark Mode Theme Parameters */
+            --color-primary: #4f46e5;         /* Indigo-400 */
+            --color-primary-hover: #4338ca;   /* Indigo-500 */
+            --color-primary-active: #3730a3;  /* Indigo-600 */
+            --color-primary-focus: #312e81;   /* Indigo-950 */
+            
+            --color-secondary: #4f46e5;       /* Target Dark Mode Secondary Color */
+        }
+
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white transition-colors duration-300">
 
-    <!-- Section 1: Top Navigation Bar Architecture -->
+    <!-- Section 1: Navigation Bar -->
     <header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-            <!-- Brand Landmark Core Identifier -->
             <a href="#" class="flex flex-col tracking-tight group">
-                <span class="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
-                    9AM WEALTH <span class="text-indigo-600 dark:text-indigo-400">CREATION</span>
+                <span class="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white group-hover:text-primary transition-colors duration-200">
+                    9AM WEALTH <span class="text-secondary">CREATION</span>
                 </span>
             </a>
             
-            <!-- Header Utility Panel (Dark Mode Toggle + Social Media Links) -->
             <div class="flex items-center gap-6 sm:gap-8">
-                <!-- Theme Controller Switch -->
+                <!-- Theme Switcher Switch -->
                 <button id="themeToggle" 
                         class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-200 text-slate-600 dark:text-slate-400 text-lg"
-                        title="Toggle Display Theme" aria-label="Toggle light or dark interface theme">
+                        title="Toggle Display Theme" aria-label="Toggle interface theme">
                     <i id="themeToggleIcon" class="fas fa-moon"></i>
                 </button>
 
@@ -57,12 +91,12 @@
                 <nav class="flex items-center gap-6" aria-label="Social Media Links">
                     <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" 
                        class="text-slate-400 hover:text-red-600 dark:hover:text-red-500 text-3xl transition-all duration-200 hover:scale-110" 
-                       title="Visit our YouTube Platform" aria-label="Visit 9AM Wealth Creation on YouTube">
+                       aria-label="Visit 9AM Wealth Creation on YouTube">
                         <i class="fab fa-youtube" aria-hidden="true"></i>
                     </a>
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" 
                        class="text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 text-3xl transition-all duration-200 hover:scale-110" 
-                       title="Connect with us on Facebook" aria-label="Connect with 9AM Wealth Creation on Facebook">
+                       aria-label="Connect with 9AM Wealth Creation on Facebook">
                         <i class="fab fa-facebook-f" aria-hidden="true"></i>
                     </a>
                 </nav>
@@ -70,46 +104,42 @@
         </div>
     </header>
 
-    <!-- Section 2: Main Hero Presentation Grid -->
+    <!-- Section 2: Main Hero Layout Frame -->
     <main class="flex-grow flex items-center bg-white dark:bg-slate-950 relative overflow-hidden transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24 grid lg:grid-cols-12 gap-12 xl:gap-16 items-center w-full relative z-10">
             
-            <!-- Left Side Element: Context & Brand Copy -->
+            <!-- Content Engine Column -->
             <article class="lg:col-span-6 space-y-8">
-                <!-- Slogan Pill Indicator -->
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 text-xs font-semibold uppercase tracking-widest shadow-sm transition-colors duration-300">
-                    <span class="flex h-2 w-2 rounded-full bg-indigo-600 dark:bg-indigo-400 shadow-sm animate-pulse"></span>
+                    <span class="flex h-2 w-2 rounded-full bg-primary shadow-sm animate-pulse"></span>
                     Knowledge first, Profit Next
                 </div>
 
-                <!-- Maximum Impact Bold Heading -->
                 <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.95]">
-                    About <span class="text-indigo-600 dark:text-indigo-400">Us</span>
+                    About <span class="text-secondary">Us</span>
                 </h1>
 
-                <!-- Professional Editorial Block Copy -->
                 <p class="text-base sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl font-medium transition-colors duration-300">
                     At 9AM Wealth Creation, we bridge the gap between financial theory and active market execution. We focus strictly on building analytical frameworks and deep technical understanding so you can confidently command your portfolio's performance.
                 </p>
 
-                <!-- Calibrated Action Trigger Interface -->
+                <!-- Action Interface Dynamic Selector Trigger -->
                 <div class="pt-4">
                     <a href="#register" 
-                       class="group inline-flex items-center justify-center gap-3 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 active:bg-indigo-800 dark:active:bg-indigo-700 text-white font-bold text-lg px-10 py-4 rounded-xl shadow-xl shadow-indigo-600/20 dark:shadow-indigo-500/10 transition-all duration-200 transform active:scale-[0.98] outline-none focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-950">
+                       class="group inline-flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover active:bg-primary-active text-white font-bold text-lg px-10 py-4 rounded-xl shadow-xl transition-all duration-200 transform active:scale-[0.98] outline-none focus:ring-4 focus:ring-primary-focus">
                         <span>Get Started</span>
                         <i class="fas fa-arrow-right text-sm transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></i>
                     </a>
                 </div>
             </article>
 
-            <!-- Right Side Element: Interactive Technical Sandbox Widget -->
+            <!-- Chart Simulator Grid Frame Column -->
             <div class="lg:col-span-6 w-full">
                 <section class="bg-slate-950 dark:bg-slate-900/40 rounded-3xl p-6 shadow-2xl shadow-slate-950/20 border border-slate-900 dark:border-slate-800 relative overflow-hidden transition-colors duration-300" aria-label="Real-time Financial Chart Simulator">
                     
-                    <!-- Sim Metadata Monitoring Overlay -->
                     <div class="flex items-center justify-between mb-5 border-b border-slate-900/60 dark:border-slate-800/60 pb-4">
                         <div class="flex flex-col gap-0.5">
-                            <span class="text-[10px] uppercase font-bold text-slate-500 font-mono tracking-widest">CURRENCY</span>
+                            <span class="text-[10px] uppercase font-bold text-slate-500 font-mono tracking-widest">Ticker Engine v2.0</span>
                             <span id="priceDisplay" class="text-2xl font-bold font-mono text-emerald-400 tracking-tight transition-all duration-100">$100.00</span>
                         </div>
                         <div class="text-right flex flex-col items-end gap-0.5">
@@ -118,10 +148,9 @@
                         </div>
                     </div>
 
-                    <!-- Sandbox Graphics Frame Viewport -->
                     <div class="relative h-[280px] sm:h-[340px] w-full bg-slate-950/40 rounded-xl">
                         <canvas id="tickerCanvas" class="w-full h-full block">
-                            Your browser does not support the canvas element. This simulator visualizes real-time market price data.
+                            Real-time market price simulation interface viewport.
                         </canvas>
                     </div>
                 </section>
@@ -130,16 +159,15 @@
         </div>
     </main>
 
-    <!-- Section 3: Clean Corporate Grounding Element (Footer) -->
+    <!-- Section 3: Footer Landmark Architecture -->
     <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 py-8 text-center text-xs text-slate-500 font-medium tracking-wide transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6">
-            &copy; 2026 9AM Wealth Creation. All rights reserved.
+            &copy; 2026 9AM Wealth Creation. All rights reserved. Registered Educational Interface.
         </div>
     </footer>
 
-    <!-- Optimized JavaScript Theme Toggle Architecture & Dynamic Chart Engine -->
+    <!-- Scripts Matrix Module for Theme Handling & Canvas Simulation Graph -->
     <script>
-        // --- System Theme Initialization Matrix ---
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeToggleIcon = document.getElementById('themeToggleIcon');
         
@@ -164,7 +192,6 @@
             renderMatrixView();
         });
 
-        // --- Optimized Real-time Graph Render Matrix Engine ---
         const canvas = document.getElementById('tickerCanvas');
         const ctx = canvas.getContext('2d');
         const priceText = document.getElementById('priceDisplay');
@@ -187,7 +214,6 @@
             
             canvas.width = containerWidth * dpr;
             canvas.height = containerHeight * dpr;
-            
             ctx.scale(dpr, dpr);
             
             canvas.style.width = `${containerWidth}px`;

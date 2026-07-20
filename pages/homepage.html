@@ -129,57 +129,22 @@
         </div>
     </aside>
 
-    <!-- Section 2: Main Hero Layout Frame -->
-    <main class="flex-grow flex items-center bg-white dark:bg-slate-950 relative overflow-hidden transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24 grid lg:grid-cols-12 gap-12 xl:gap-16 items-center w-full relative z-10">
-            
-            <!-- Content Engine Column -->
-            <article class="lg:col-span-6 space-y-8">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 text-xs font-semibold uppercase tracking-widest shadow-sm transition-colors duration-300">
-                    <span class="flex h-2 w-2 rounded-full bg-primary shadow-sm animate-pulse"></span>
-                    Knowledge first, Profit Next
+    <!-- Section 2: Main Search Layout Area -->
+    <main class="flex-grow flex items-center justify-center bg-white dark:bg-slate-950 px-6 py-20 relative overflow-hidden transition-colors duration-300">
+        <div class="w-full max-w-3xl mx-auto text-center space-y-6">
+            <form id="searchForm" class="relative w-full">
+                <div class="relative flex items-center">
+                    <i class="fas fa-search absolute left-6 text-slate-400 dark:text-slate-500 text-xl pointer-events-none"></i>
+                    <input type="text" 
+                           id="searchInput" 
+                           placeholder="Search frameworks, market insights, topics..." 
+                           class="w-full pl-16 pr-32 py-5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-lg font-medium shadow-lg focus:outline-none focus:ring-4 focus:ring-primary-focus focus:border-primary transition-all duration-200">
+                    <button type="submit" 
+                            class="absolute right-3 bg-primary hover:bg-primary-hover active:bg-primary-active text-white font-bold text-sm px-6 py-3 rounded-xl transition-all duration-200 shadow-md">
+                        Search
+                    </button>
                 </div>
-
-                <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black text-slate-950 dark:text-white tracking-tighter leading-[0.95]">
-                    About <span class="text-secondary">Us</span>
-                </h1>
-
-                <p class="text-base sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl font-medium transition-colors duration-300">
-                    At 9AM Wealth Creation, we bridge the gap between financial theory and active market execution. We focus strictly on building analytical frameworks and deep technical understanding so you can confidently command your portfolio's performance.
-                </p>
-
-                <div class="pt-4">
-                    <a href="pages/homepage.html" 
-                       class="group inline-flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover active:bg-primary-active text-white font-bold text-lg px-10 py-4 rounded-xl shadow-xl transition-all duration-200 transform active:scale-[0.98] outline-none focus:ring-4 focus:ring-primary-focus">
-                        <span>Get Started</span>
-                        <i class="fas fa-arrow-right text-sm transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </article>
-
-            <!-- Chart Simulator Grid Frame Column -->
-            <div class="lg:col-span-6 w-full">
-                <section class="bg-slate-950 dark:bg-slate-900/40 rounded-3xl p-6 shadow-2xl shadow-slate-950/20 border border-slate-900 dark:border-slate-800 relative overflow-hidden transition-colors duration-300" aria-label="Real-time Financial Chart Simulator">
-                    
-                    <div class="flex items-center justify-between mb-5 border-b border-slate-900/60 dark:border-slate-800/60 pb-4">
-                        <div class="flex flex-col gap-0.5">
-                            <span class="text-[10px] uppercase font-bold text-slate-500 font-mono tracking-widest">Ticker Engine v2.0</span>
-                            <span id="priceDisplay" class="text-2xl font-bold font-mono text-emerald-400 tracking-tight transition-all duration-100">$100.00</span>
-                        </div>
-                        <div class="text-right flex flex-col items-end gap-0.5">
-                            <span class="text-[10px] uppercase font-bold text-slate-500 font-mono tracking-widest">Net Variance</span>
-                            <span id="changeDisplay" class="text-sm font-semibold font-mono text-emerald-400 transition-all duration-100">+0.00%</span>
-                        </div>
-                    </div>
-
-                    <div class="relative h-[280px] sm:h-[340px] w-full bg-slate-950/40 rounded-xl">
-                        <canvas id="tickerCanvas" class="w-full h-full block">
-                            Real-time market price simulation interface viewport.
-                        </canvas>
-                    </div>
-                </section>
-            </div>
-
+            </form>
         </div>
     </main>
 
@@ -241,106 +206,19 @@
                 localStorage.setItem('theme', 'dark');
             }
             updateThemeInterfaceElements();
-            renderMatrixView();
         });
 
-        // --- Real-time Financial Ticker Simulation ---
-        const canvas = document.getElementById('tickerCanvas');
-        const ctx = canvas.getContext('2d');
-        const priceText = document.getElementById('priceDisplay');
-        const changeText = document.getElementById('changeDisplay');
+        // --- Search Form Handler ---
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
 
-        let dataPoints = [];
-        let runningPrice = 100.00;
-        const initialCost = 100.00;
-        const limitLength = 50;
-
-        for(let idx = 0; idx < limitLength; idx++) {
-            runningPrice += (Math.random() - 0.49) * 1.8;
-            dataPoints.push(runningPrice);
-        }
-
-        function alignCanvasBoundaries() {
-            const dpr = window.devicePixelRatio || 1;
-            const containerWidth = canvas.parentElement.clientWidth;
-            const containerHeight = canvas.parentElement.clientHeight;
-            
-            canvas.width = containerWidth * dpr;
-            canvas.height = containerHeight * dpr;
-            ctx.scale(dpr, dpr);
-            
-            canvas.style.width = `${containerWidth}px`;
-            canvas.style.height = `${containerHeight}px`;
-            
-            renderMatrixView();
-        }
-        window.addEventListener('resize', alignCanvasBoundaries);
-        setTimeout(alignCanvasBoundaries, 50);
-
-        function tickSimulationEngine() {
-            const vectorVal = (Math.random() - 0.5) * 2.2;
-            runningPrice += vectorVal;
-            if(runningPrice < 5) runningPrice = 5;
-
-            dataPoints.shift();
-            dataPoints.push(runningPrice);
-
-            const compoundYield = ((runningPrice - initialCost) / initialCost) * 100;
-            
-            priceText.innerText = `$${runningPrice.toFixed(2)}`;
-            changeText.innerText = `${compoundYield >= 0 ? '+' : ''}${compoundYield.toFixed(2)}%`;
-
-            const trendColorClass = vectorVal >= 0 ? "text-emerald-400" : "text-rose-500";
-            priceText.className = `text-2xl font-bold font-mono tracking-tight transition-colors duration-100 ${trendColorClass}`;
-            changeText.className = `text-sm font-semibold font-mono transition-colors duration-100 ${trendColorClass}`;
-
-            renderMatrixView();
-        }
-
-        function renderMatrixView() {
-            const w = canvas.width / (window.devicePixelRatio || 1);
-            const h = canvas.height / (window.devicePixelRatio || 1);
-            
-            if (w === 0 || h === 0) return;
-            ctx.clearRect(0, 0, w, h);
-
-            const offset = 12;
-            const viewWidth = w - (offset * 2);
-            const viewHeight = h - (offset * 2);
-
-            const floor = Math.min(...dataPoints);
-            const peak = Math.max(...dataPoints);
-            const scaleSpread = (peak - floor) || 1;
-
-            ctx.beginPath();
-            ctx.lineWidth = 3;
-            ctx.lineJoin = "round";
-            ctx.lineCap = "round";
-            
-            const uptrendMode = dataPoints[dataPoints.length - 1] >= dataPoints[dataPoints.length - 2];
-            ctx.strokeStyle = uptrendMode ? '#34d399' : '#f43f5e'; 
-
-            for(let key = 0; key < dataPoints.length; key++) {
-                const posX = offset + (key / (dataPoints.length - 1)) * viewWidth;
-                const posY = offset + viewHeight - ((dataPoints[key] - floor) / scaleSpread) * viewHeight;
-
-                if(key === 0) ctx.moveTo(posX, posY);
-                else ctx.lineTo(posX, posY);
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const query = searchInput.value.trim();
+            if (query) {
+                alert(`Searching for: ${query}`);
             }
-            ctx.stroke();
-
-            ctx.lineTo(offset + viewWidth, h);
-            ctx.lineTo(offset, h);
-            ctx.closePath();
-            
-            const fillMap = ctx.createLinearGradient(0, 0, 0, h);
-            fillMap.addColorStop(0, uptrendMode ? 'rgba(52, 211, 153, 0.14)' : 'rgba(244, 63, 94, 0.14)');
-            fillMap.addColorStop(1, 'rgba(2, 6, 23, 0)');
-            ctx.fillStyle = fillMap;
-            ctx.fill();
-        }
-
-        setInterval(tickSimulationEngine, 1000);
+        });
     </script>
 </body>
 </html>
